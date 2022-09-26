@@ -16,3 +16,8 @@ jobs:
 
       - name: echo
         run: echo ${{ steps.extract_branch.outputs.branch }}
+
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: false
