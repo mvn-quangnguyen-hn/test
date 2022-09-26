@@ -1,7 +1,8 @@
-name: Test branch
+name: tt branch
 on:
-  push:
-    branches: [main]
+  # push:
+  #   branches: [release/**]
+  workflow_dispatch:
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -16,8 +17,3 @@ jobs:
 
       - name: echo
         run: echo ${{ steps.extract_branch.outputs.branch }}
-
-      - uses: "marvinpinto/action-automatic-releases@latest"
-        with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          prerelease: false
