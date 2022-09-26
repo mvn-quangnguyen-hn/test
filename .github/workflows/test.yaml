@@ -4,7 +4,7 @@ on:
     inputs:
       version_tag:
         type: string
-        description: "Specify app version. Format: vx.x.x"
+        description: "Specify app version. Format: x.x.x"
         required: true
 jobs:
   deploy:
@@ -25,4 +25,4 @@ jobs:
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: false
-          automatic_release_tag: ${{ inputs.version_tag }}
+          automatic_release_tag: v${{ inputs.version_tag }}
