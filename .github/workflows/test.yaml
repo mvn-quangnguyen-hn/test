@@ -4,11 +4,11 @@ on:
     inputs:
       create_version:
         type: boolean
-        description: "Create release/tag."
+        description: "Check this to create release/tag."
         required: true
       version_tag:
         type: string
-        description: "Don't specify if <b>Create release/tag</b> is omitted. main: x.x.x"
+        description: "Skip this if Create release/tag is omitted. Format: x.x.x"
         required: false
 jobs:
   deploy:
