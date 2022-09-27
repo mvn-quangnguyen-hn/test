@@ -16,7 +16,8 @@ jobs:
         id: extract_branch
 
       - name: echo
-        run: echo ${{ steps.extract_branch.outputs.branch }}
+        run: echo ${{ steps.extract_branch.outputs.branch }} | sed 's/release\///'
+        id: extract_version
 
       - name: Create Release
         id: create_release
@@ -24,7 +25,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
         with:
-          tag_name: ${{ steps.extract_branch.outputs.branch }}
+          tag_name: ${{ steps.extract_version.outputs.branch }}
           draft: false
           prerelease: false
           generate_release_notes: true
