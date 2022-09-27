@@ -1,7 +1,7 @@
 name: tt branch
 on:
-  # push:
-  #   branches: [release/**]
+  push:
+    branches: [release/**]
   workflow_dispatch:
 jobs:
   deploy:
@@ -17,3 +17,15 @@ jobs:
 
       - name: echo
         run: echo ${{ steps.extract_branch.outputs.branch }}
+
+      - name: Create Release
+        if: inputs.create_version == true
+        id: create_release
+        uses: softprops/action-gh-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        with:
+          tag_name: ${{ steps.extract_branch.outputs.branch }}
+          draft: false
+          prerelease: false
+          generate_release_notes: true
