@@ -1,4 +1,4 @@
-name: Prod branch
+name: cd-workflow-dispatch-production
 on:
   workflow_dispatch:
     inputs:
@@ -8,7 +8,7 @@ on:
         required: true
       version_tag:
         type: string
-        description: "Skip this if Create release/tag is omitted. Format: x.x.x"
+        description: "Skip this if Create release/tag is omitted. Format: x.y.z"
         required: false
 jobs:
   deploy:
