@@ -16,7 +16,7 @@ jobs:
         id: extract_branch
 
       - name: echo
-        run: echo ${{ steps.extract_branch.outputs.branch }} | sed 's/release\///'
+        run: "echo ##[set-output name=branch;]$(echo ${{ steps.extract_branch.outputs.branch }} | sed 's/release\///')"
         id: extract_version
 
       - name: Create Release
