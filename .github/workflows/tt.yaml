@@ -1,7 +1,8 @@
 name: tt branch
 on:
-  push:
-    branches: [release/**]
+  # push:
+  #   branches: [release/**]
+  workflow_dispatch:
 jobs:
   deploy:
     runs-on: ubuntu-latest

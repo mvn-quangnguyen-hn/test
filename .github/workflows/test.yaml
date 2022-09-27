@@ -1,7 +1,15 @@
-name: Test branch
+name: Prod branch
 on:
-  push:
-    branches: [main]
+  workflow_dispatch:
+    inputs:
+      create_version:
+        type: boolean
+        description: "Check this to create release/tag."
+        required: true
+      version_tag:
+        type: string
+        description: "Skip this if Create release/tag is omitted. main: x.x.x"
+        required: false
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -16,3 +24,15 @@ jobs:
 
       - name: echo
         run: echo ${{ steps.extract_branch.outputs.branch }}
+
+      - name: Create Release
+        if: inputs.create_version == true
+        id: create_release
+        uses: softprops/action-gh-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        with:
+          tag_name: v${{ inputs.version_tag }}
+          draft: false
+          prerelease: false
+          generate_release_notes: true
