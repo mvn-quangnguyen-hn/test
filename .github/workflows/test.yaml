@@ -2,10 +2,14 @@ name: Prod branch
 on:
   workflow_dispatch:
     inputs:
+      create_version:
+        type: boolean
+        description: "Create release/tag."
+        required: true
       version_tag:
         type: string
-        description: "Specify app version. Format: x.x.x"
-        required: true
+        description: "Specify app version. main: x.x.x"
+        required: false
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -22,6 +26,7 @@ jobs:
         run: echo ${{ steps.extract_branch.outputs.branch }}
 
       - name: Create Release
+        if: inputs.create_version == true
         id: create_release
         uses: softprops/action-gh-release@v1
         env:
