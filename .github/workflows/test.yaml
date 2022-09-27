@@ -8,7 +8,7 @@ on:
         required: true
       version_tag:
         type: string
-        description: "Specify app version. main: x.x.x"
+        description: "Don't specify if <b>Create release/tag</b> is omitted. main: x.x.x"
         required: false
 jobs:
   deploy:
