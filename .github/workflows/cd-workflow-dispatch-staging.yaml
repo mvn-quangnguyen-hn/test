@@ -1,0 +1,17 @@
+name: cd-workflow-dispatch-staging
+on:
+  workflow_dispatch:
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "code: check out code"
+        uses: actions/checkout@v2
+
+      - name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
+
+      - name: echo
+        run: echo ${{ steps.extract_branch.outputs.branch }}
