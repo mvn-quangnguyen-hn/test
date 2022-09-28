@@ -8,7 +8,9 @@ on:
         required: true
       version_tag:
         type: string
-        description: "Skip this if Create release/tag is omitted. Format: x.y.z"
+        description: |
+          Skip this if Create release/tag is omitted. 
+          Format: x.y.z
         required: false
 jobs:
   deploy:
