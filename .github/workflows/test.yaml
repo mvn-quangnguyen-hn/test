@@ -2,15 +2,11 @@ name: cd-workflow-dispatch-production
 on:
   workflow_dispatch:
     inputs:
-      create_version:
-        type: boolean
-        description: "Check this to create release/tag."
-        required: true
       version_tag:
         type: string
         description: |
-          Skip this if Create release/tag is omitted. 
-          Format: x.y.z
+          Specify release/tag. Format: x.y.z
+          Skip when deploy main_backup
         required: false
 jobs:
   deploy:
@@ -28,7 +24,7 @@ jobs:
         run: echo ${{ steps.extract_branch.outputs.branch }}
 
       - name: Create Release
-        if: inputs.create_version == true
+        if: inputs.version_tag != null
         id: create_release
         uses: softprops/action-gh-release@v1
         env:
