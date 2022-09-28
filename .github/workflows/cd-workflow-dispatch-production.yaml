@@ -8,7 +8,7 @@ on:
         required: true
       version_tag:
         type: string
-        description: "Specify app release. Format: x.y.z"
+        description: "Specify release/tag, skip this when deploy `main_backup`. Format: x.y.z"
         required: false
 jobs:
   deploy:
