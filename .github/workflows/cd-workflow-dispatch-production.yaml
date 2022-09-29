@@ -39,9 +39,6 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const projectId = `${{ env.GCP_PROJECT }}`;
-            const re = new RegExp(projectId, 'g')
-
             const deployOutput = `#### Preview Release: \<${{ steps.create_release.outputs.id }}>`;
 
             // Get the existing comments.
