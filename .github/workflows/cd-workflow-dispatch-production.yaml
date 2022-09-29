@@ -1,4 +1,4 @@
-name: cd-workflow-dispatch-production
+name: cd-workflow-dispatch-prd
 on:
   workflow_dispatch:
     inputs:
